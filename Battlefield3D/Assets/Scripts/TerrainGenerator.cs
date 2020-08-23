@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TerrainGenerator : MonoBehaviour
 {
-
+	public Transform Player;
 	public float R; // Коэффициент скалистости
 	public int GRAIN = 8; // Коэффициент зернистости
 	public bool FLAT = false; // Делать ли равнины
@@ -43,6 +43,9 @@ public class TerrainGenerator : MonoBehaviour
 				heights[i, k] = texture.GetPixel(i, k).grayscale * R;
 			}
 		}
+
+		Player.position = new Vector3(resolution/2, 100, resolution/2);//четко, не костыль а фича
+		//надо потом перед заходом на новую локу, сделать загрузку, где буду проверять что плеер упал.
 
 		// Применяем изменения
 		terrain.terrainData.size = new Vector3(width, width, height);
